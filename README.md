@@ -26,8 +26,8 @@ The framework covers:
 - Track inherited cyber risks and remediation progress over time
 
 ---
-
-## 📂 Project Structure
+🏗️ Architecture & Workflow – SecureMerge
+📁 Project Structure
 ta5tetk_site/
 │
 ├── index.html                  # Landing page
@@ -55,48 +55,46 @@ ta5tetk_site/
 └── README.md
 ---
 
-## 🔁 M&A Cyber Risk Workflow
- 
-┌───────────────────────────────┐
-│     Target Company Identified │
-│      (Pre-Deal Phase)         │
-└───────────────┬───────────────┘
-                ▼
+🔁 M&A Cyber Risk Workflow (ASCII Architecture)
 ┌────────────────────────────────────┐
-│  Cyber Due Diligence Questionnaire │
-│  - Policies                        │
-│  - Evidence & Documentation        │
-│  - Technical & Compliance Gaps     │
+│     Target Company Identified      │
+│        (Pre-Deal Phase)            │
 └───────────────┬────────────────────┘
                 ▼
 ┌────────────────────────────────────┐
-│        Risk Scoring Model          │
-│   (Low / Medium / High Risk)       │
+│ Cyber Due Diligence Questionnaire  │
+│  ─ Policies                        │
+│  ─ Evidence & Documentation        │
+│  ─ Technical & Compliance Gaps     │
+└───────────────┬────────────────────┘
+                ▼
+┌────────────────────────────────────┐
+│          Risk Scoring Model        │
+│       (Low / Medium / High)        │
 └───────────────┬────────────────────┘
                 ▼
 ┌────────────────────────────────────┐
 │   Integration Decision Framework   │
 │                                    │
-│   ▸ Full Integration               │
-│   ▸ Segmented Integration          │
-│   ▸ Ring-Fenced Environment        │
-│   ▸ Clean-Room Rebuild             │
+│  ▸ Full Integration                │
+│  ▸ Segmented Integration           │
+│  ▸ Ring-Fenced Environment         │
+│  ▸ Clean-Room Rebuild              │
 └───────────────┬────────────────────┘
                 ▼
 ┌────────────────────────────────────┐
-│     Integration Governance         |
-│   - Risk Acceptance                │
-│   - Temporary Exceptions           │
-│   - Remediation Plans              │
+│        Integration Governance      │
+│  ─ Risk Acceptance                 │
+│  ─ Temporary Exceptions            │
+│  ─ Remediation Plans               │
 └───────────────┬────────────────────┘
                 ▼
 ┌────────────────────────────────────┐
-│      Risk Register & Reporting     |    
-│   - Ownership (RACI)               |
-│   - Timelines                      | 
-│   - Executive Dashboards           | 
+│      Risk Register & Reporting     │
+│  ─ Ownership (RACI)                │
+│  ─ Timelines                       │
+│  ─ Executive Dashboards            │
 └────────────────────────────────────┘
-
 
 ---
 
