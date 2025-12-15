@@ -30,7 +30,7 @@ The framework covers:
 
 ---
 
-## 🏗️ Architecture & Workflow – SecureMerge
+## 🏗️ Architecture – SecureMerge
 
 ### 📁 Project Structure
 ``` 
@@ -61,6 +61,7 @@ ta5tetk_site/
 └── README.md
 ``` 
 ---
+
 
 ## 🔁 M&A Cyber Risk Workflow (ASCII Architecture)
 
