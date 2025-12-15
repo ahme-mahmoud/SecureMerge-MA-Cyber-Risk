@@ -33,6 +33,7 @@ The framework covers:
 ## 🏗️ Architecture & Workflow – SecureMerge
 
 ### 📁 Project Structure
+``` 
 ta5tetk_site/
 │
 ├── index.html # Landing page
@@ -58,11 +59,12 @@ ta5tetk_site/
 │ └── sample_risk_register.csv
 │
 └── README.md
-
+``` 
 ---
 
+## 🔁 M&A Cyber Risk Workflow (ASCII Architecture)
 
-```Workflow 
+``` 
 ┌────────────────────────────────────┐
 │     Target Company Identified      │
 │        (Pre-Deal Phase)            │
@@ -108,7 +110,7 @@ ta5tetk_site/
 │  - Executive Dashboards            │
 └────────────────────────────────────┘
 ده:
-
+``` 
 ## 🔍 Scope
 
 ### ✅ In Scope
