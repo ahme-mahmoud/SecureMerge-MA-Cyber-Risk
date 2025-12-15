@@ -30,29 +30,73 @@ The framework covers:
 ## 📂 Project Structure
 ta5tetk_site/
 │
-├── index.html # Landing page
-├── style.css # Global styles
-├── script.js # Shared scripts
+├── index.html                  # Landing page
+├── style.css                   # Global styles
+├── script.js                   # Shared scripts
 ├── logo.png
 │
 ├── deliverables/
-│ ├── executive_summary.html
-│ ├── framework.html
-│ ├── framework_mna.html
-│ ├── governance.html
-│ ├── playbook.html
-│ ├── risk_register.html
-│ ├── scenarios.html
-│ │
-│ ├── Governance_Charter.md
-│ ├── Integration_Decision_Framework.md
-│ ├── M&A_Cyber_Due_Diligence_Playbook.md
-│ │
-│ ├── Scoring_Model.csv
-│ ├── sample_risk_register.xlsx
-│ └── sample_risk_register.csv
+│   ├── executive_summary.html
+│   ├── framework.html
+│   ├── framework_mna.html
+│   ├── governance.html
+│   ├── playbook.html
+│   ├── risk_register.html
+│   ├── scenarios.html
+│   │
+│   ├── Governance_Charter.md
+│   ├── Integration_Decision_Framework.md
+│   ├── M&A_Cyber_Due_Diligence_Playbook.md
+│   │
+│   ├── Scoring_Model.csv
+│   ├── sample_risk_register.xlsx
+│   └── sample_risk_register.csv
 │
 └── README.md
+---
+
+## 🔁 M&A Cyber Risk Workflow
+ 
+┌───────────────────────────────┐
+│     Target Company Identified │
+│      (Pre-Deal Phase)         │
+└───────────────┬───────────────┘
+                ▼
+┌────────────────────────────────────┐
+│  Cyber Due Diligence Questionnaire │
+│  - Policies                        │
+│  - Evidence & Documentation        │
+│  - Technical & Compliance Gaps     │
+└───────────────┬────────────────────┘
+                ▼
+┌────────────────────────────────────┐
+│        Risk Scoring Model          │
+│   (Low / Medium / High Risk)       │
+└───────────────┬────────────────────┘
+                ▼
+┌────────────────────────────────────┐
+│   Integration Decision Framework   │
+│                                    │
+│   ▸ Full Integration               │
+│   ▸ Segmented Integration          │
+│   ▸ Ring-Fenced Environment        │
+│   ▸ Clean-Room Rebuild             │
+└───────────────┬────────────────────┘
+                ▼
+┌────────────────────────────────────┐
+│     Integration Governance         |
+│   - Risk Acceptance                │
+│   - Temporary Exceptions           │
+│   - Remediation Plans              │
+└───────────────┬────────────────────┘
+                ▼
+┌────────────────────────────────────┐
+│      Risk Register & Reporting     |    
+│   - Ownership (RACI)               |
+│   - Timelines                      | 
+│   - Executive Dashboards           | 
+└────────────────────────────────────┘
+
 
 ---
 
