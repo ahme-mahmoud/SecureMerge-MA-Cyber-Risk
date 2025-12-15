@@ -1,14 +1,15 @@
-<img width="500" height="500" alt="logo" src="https://github.com/user-attachments/assets/47ea9a95-58a1-4057-8d09-d78a3085150b" />
+<img width="500" height="500" alt="SecureMerge Logo" src="https://github.com/user-attachments/assets/47ea9a95-58a1-4057-8d09-d78a3085150b" />
 
 # SecureMerge – Cyber Risk Management for Mergers & Acquisitions (M&A)
 
 ## 📌 Project Overview
-**SecureMerge** is a cybersecurity and Governance, Risk, and Compliance (GRC) framework
+**SecureMerge** is a cybersecurity and **Governance, Risk, and Compliance (GRC)** framework
 designed to manage cyber risks throughout the **Mergers & Acquisitions (M&A)** lifecycle.
 
-The project focuses on challenges faced by parent organizations that frequently acquire
-smaller companies such as SaaS startups or regional service providers, where hidden cyber
-risks often exist (legacy systems, unknown breaches, weak controls, and compliance gaps).
+The project addresses challenges faced by parent organizations that frequently acquire
+smaller companies such as **SaaS startups** or **regional service providers**, where hidden
+cyber risks are common (legacy systems, unknown breaches, weak security controls, and
+compliance gaps).
 
 The framework covers:
 - Pre-deal cyber due diligence
@@ -28,43 +29,47 @@ The framework covers:
 - Track inherited cyber risks and remediation progress over time
 
 ---
-🏗️ Architecture & Workflow – SecureMerge
-📁 Project Structure
+
+## 🏗️ Architecture & Workflow – SecureMerge
+
+### 📁 Project Structure
 ta5tetk_site/
 │
-├── index.html                  # Landing page
-├── style.css                   # Global styles
-├── script.js                   # Shared scripts
+├── index.html # Landing page
+├── style.css # Global styles
+├── script.js # Shared scripts
 ├── logo.png
 │
 ├── deliverables/
-│   ├── executive_summary.html
-│   ├── framework.html
-│   ├── framework_mna.html
-│   ├── governance.html
-│   ├── playbook.html
-│   ├── risk_register.html
-│   ├── scenarios.html
-│   │
-│   ├── Governance_Charter.md
-│   ├── Integration_Decision_Framework.md
-│   ├── M&A_Cyber_Due_Diligence_Playbook.md
-│   │
-│   ├── Scoring_Model.csv
-│   ├── sample_risk_register.xlsx
-│   └── sample_risk_register.csv
+│ ├── executive_summary.html
+│ ├── framework.html
+│ ├── framework_mna.html
+│ ├── governance.html
+│ ├── playbook.html
+│ ├── risk_register.html
+│ ├── scenarios.html
+│ │
+│ ├── Governance_Charter.md
+│ ├── Integration_Decision_Framework.md
+│ ├── M&A_Cyber_Due_Diligence_Playbook.md
+│ │
+│ ├── Scoring_Model.csv
+│ ├── sample_risk_register.xlsx
+│ └── sample_risk_register.csv
 │
 └── README.md
+
 ---
 
-🔁 M&A Cyber Risk Workflow (ASCII Architecture)
+## 🔁 M&A Cyber Risk Workflow (ASCII Architecture)
+
 ┌────────────────────────────────────┐
 │     Target Company Identified      │
 │        (Pre-Deal Phase)            │
 └───────────────┬────────────────────┘
                 ▼
 ┌────────────────────────────────────┐
-│ Cyber Due Diligence Questionnaire  │
+│  Cyber Due Diligence Questionnaire │
 │  ─ Policies                        │
 │  ─ Evidence & Documentation        │
 │  ─ Technical & Compliance Gaps     │
@@ -97,6 +102,7 @@ ta5tetk_site/
 │  ─ Timelines                       │
 │  ─ Executive Dashboards            │
 └────────────────────────────────────┘
+
 
 ---
 
@@ -187,10 +193,11 @@ Supported integration patterns:
 ---
 
 ## 📄 License
-This project is provided for **educational and academic purposes**.
+This project is provided for **educational and academic purposes only**.
 
 ---
 
 ## ✍️ Author
 Developed as part of a **Security Policy, Threats and Risk Management project**  
-Focused on real-world M&A cybersecurity challenges.
+Focused on real-world **M&A cybersecurity challenges**.
+
