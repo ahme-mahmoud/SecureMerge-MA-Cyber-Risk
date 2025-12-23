@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Governance Charter - Ta5tetk</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="section my-4" id="content">
+    <h1>Governance Charter & RACI</h1>
+    <p class="lead">Proposed M&A Cyber Risk Committee, responsibilities, RACI and timelines.</p>
+    <h2>Committee</h2>
+    <ul>
+      <li>Chair: CISO</li>
+      <li>Members: Head of IT, Head of Legal, Head of Risk, M&A Lead, Head of Ops</li>
+    </ul>
+    <h2>Timelines</h2>
+    <p>Initial assessment: 2 weeks. Detailed assessment: 4–6 weeks. Remediation by priority.</p>
+    <div class="text-center mt-4">
+      <a class="btn btn-primary" id="downloadPdf">Download PDF</a>
+      <a class="btn btn-secondary" href="../index.html">Back</a>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function generateProfessionalPDF(filename) {
+      const logoSrc = '../logo.png';
+      const content = document.getElementById('content').innerText;
+      const img = new Image();
+      img.src = logoSrc;
+      img.onload = function () {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p','mm','a4');
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const margin = 12;
+        const usableWidth = pageWidth - margin * 2;
+
+        // Header with logo and title
+        doc.setFontSize(10);
+        try { doc.addImage(img, 'PNG', margin, 8, 20, 20); } catch(e) {}
+        doc.setFontSize(14);
+        doc.text('Ta5tetk – Governance Charter', pageWidth/2, 15, {align:'center'});
+        doc.setLineWidth(0.5);
+        doc.line(margin, 26, pageWidth - margin, 26);
+
+        doc.setFontSize(11);
+        const lines = doc.splitTextToSize(content, usableWidth);
+        let cursorY = 32;
+        const lineHeight = 6;
+        for (let i = 0; i < lines.length; i++) {
+          if (cursorY > 275) {
+            doc.addPage();
+            cursorY = 20;
+            try { doc.addImage(img, 'PNG', margin, 6, 18, 18); } catch(e) {}
+            doc.setFontSize(12);
+            doc.text('Ta5tetk – Governance Charter', pageWidth/2, 12, {align:'center'});
+            doc.setLineWidth(0.5);
+            doc.line(margin, 16, pageWidth - margin, 16);
+            cursorY = 24;
+            doc.setFontSize(11);
+          }
+          doc.text(lines[i], margin, cursorY);
+          cursorY += lineHeight;
+        }
+
+        const totalPages = doc.getNumberOfPages();
+        for (let p = 1; p <= totalPages; p++) {
+          doc.setPage(p);
+          const pageStr = 'Page ' + String(p) + ' / ' + String(totalPages);
+          doc.setFontSize(9);
+          doc.text(pageStr, pageWidth - margin, 287, {align:'right'});
+        }
+
+        doc.save(filename);
+      };
+      img.onerror = function () {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p','mm','a4');
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const margin = 12;
+        doc.setFontSize(14);
+        doc.text('Ta5tetk – Governance Charter', pageWidth/2, 20, {align:'center'});
+        const lines = doc.splitTextToSize(content, pageWidth - margin * 2);
+        doc.setFontSize(11);
+        doc.text(lines, margin, 30);
+        doc.save(filename);
+      };
+    }
+    document.getElementById('downloadPdf').addEventListener('click', function () {
+      generateProfessionalPDF('governance_charter.pdf');
+    });
+  </script>
+</body>
+</html>
