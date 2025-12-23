@@ -1,0 +1,5 @@
+Category,Control,Issue,RiskScore,Priority,Owner,TargetDate,Status,Notes
+Systems,Unsupported OS,Windows Server 2008 detected,80,High,Target IT,2026-01-31,Open,Upgrade or migrate
+Identity,MFA missing,No MFA on admin accounts,70,High,Target IT,2025-12-15,Open,Deploy MFA
+Logging,No SIEM,Logs not collected centrally,60,Medium,Acquirer IT,2026-02-28,Open,Deploy SIEM
+Data,Backups untested,Backups exist but not tested,50,Medium,Target IT,2026-03-15,Open,Test backups

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Playbook - Ta5tetk</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="section my-4" id="content">
+    <h1>M&A Cyber Due Diligence Playbook</h1>
+    <p class="lead">A practical playbook to guide cyber due diligence during M&A.</p>
+    <h2>Executive summary</h2>
+    <p>This playbook provides a repeatable approach to evaluate cyber risk during acquisitions, including questionnaire, evidence checklist, scoring and remediation guidance.</p>
+    <h2>Questionnaire & Scoring</h2>
+    <p>Use the same questionnaire used in the web assessment. Weight answers to compute per-category and overall risk percentages.</p>
+    <h3>Evidence checklist</h3>
+    <ul>
+      <li>Information Security Policy</li>
+      <li>Network diagrams</li>
+      <li>Vulnerability scan reports</li>
+      <li>Penetration testing reports</li>
+      <li>Audit findings</li>
+    </ul>
+    <h3>Scoring & thresholds</h3>
+    <p>Default thresholds: 0–30% Low, 31–60% Medium, &gt;60% High. Adjust via the results page.</p>
+    <h3>Remediation roadmap</h3>
+    <p>Prioritise fixes by impact and feasibility. Critical items should have a 30-day target.</p>
+    <div class="text-center mt-4">
+      <a class="btn btn-primary" id="downloadPdf">Download PDF</a>
+      <a class="btn btn-secondary" href="../index.html">Back</a>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function generateProfessionalPDF(filename) {
+      const logoSrc = '../logo.png';
+      const content = document.getElementById('content').innerText;
+      const img = new Image();
+      img.src = logoSrc;
+      img.onload = function () {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p','mm','a4');
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const margin = 12;
+        const usableWidth = pageWidth - margin * 2;
+
+        // Header with logo and title
+        doc.setFontSize(10);
+        try { doc.addImage(img, 'PNG', margin, 8, 20, 20); } catch(e) {}
+        doc.setFontSize(14);
+        doc.text('Ta5tetk – M&A Cyber Due Diligence Playbook', pageWidth/2, 15, {align:'center'});
+        doc.setLineWidth(0.5);
+        doc.line(margin, 26, pageWidth - margin, 26);
+
+        // Body
+        doc.setFontSize(11);
+        const lines = doc.splitTextToSize(content, usableWidth);
+        let cursorY = 32;
+        const lineHeight = 6;
+        for (let i = 0; i < lines.length; i++) {
+          if (cursorY > 275) {
+            doc.addPage();
+            cursorY = 20;
+            try { doc.addImage(img, 'PNG', margin, 6, 18, 18); } catch(e) {}
+            doc.setFontSize(12);
+            doc.text('Ta5tetk – M&A Cyber Due Diligence Playbook', pageWidth/2, 12, {align:'center'});
+            doc.setLineWidth(0.5);
+            doc.line(margin, 16, pageWidth - margin, 16);
+            cursorY = 24;
+            doc.setFontSize(11);
+          }
+          doc.text(lines[i], margin, cursorY);
+          cursorY += lineHeight;
+        }
+
+        // Footer pages
+        const totalPages = doc.getNumberOfPages();
+        for (let p = 1; p <= totalPages; p++) {
+          doc.setPage(p);
+          const pageStr = 'Page ' + String(p) + ' / ' + String(totalPages);
+          doc.setFontSize(9);
+          doc.text(pageStr, pageWidth - margin, 287, {align:'right'});
+        }
+
+        doc.save(filename);
+      };
+      img.onerror = function () {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p','mm','a4');
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const margin = 12;
+        doc.setFontSize(14);
+        doc.text('Ta5tetk – M&A Cyber Due Diligence Playbook', pageWidth/2, 20, {align:'center'});
+        const lines = doc.splitTextToSize(content, pageWidth - margin * 2);
+        doc.setFontSize(11);
+        doc.text(lines, margin, 30);
+        doc.save(filename);
+      };
+    }
+    document.getElementById('downloadPdf').addEventListener('click', function () {
+      generateProfessionalPDF('playbook.pdf');
+    });
+  </script>
+</body>
+</html>

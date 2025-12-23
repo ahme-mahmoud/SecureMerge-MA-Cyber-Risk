@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ta5tetk – M&A Cyber Risk Register</title>
+
+    <!-- main shared styles -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- small extra styles للجدول والبادجات -->
+    <style>
+        .page-wrap {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        }
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .page-header img {
+            width: 60px;
+            height: 60px;
+        }
+        .page-header h1 {
+            margin: 0;
+            font-size: 1.6rem;
+        }
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .risk-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .risk-table th,
+        .risk-table td {
+            border: 1px solid #e5e7eb;
+            padding: 6px 8px;
+            text-align: left;
+        }
+        .risk-table th {
+            background: #f4f4f5;
+        }
+        .badge {
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-low {
+            background: #e6f4ea;
+            color: #198754;
+        }
+        .badge-medium {
+            background: #fff4e5;
+            color: #fd7e14;
+        }
+        .badge-high {
+            background: #fde2e1;
+            color: #dc3545;
+        }
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 12px 0 4px;
+            align-items: center;
+        }
+        .filters label {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .filters select {
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid #d4d4d8;
+        }
+        .chart-container {
+            margin-top: 24px;
+        }
+        .text-muted {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+    </style>
+
+    <!-- Chart.js + SheetJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<div class="page-wrap">
+    <header class="page-header">
+        <img src="../logo.png" alt="Ta5tetk logo">
+        <div>
+            <h1>SecureMerge – M&A Cyber Risk Register</h1>
+            <p class="text-muted">
+                Interactive risk register for an example acquisition, including inherent / residual risk and remediation roadmap.
+            </p>
+        </div>
+    </header>
+
+    <div class="btn-row">
+        <a class="btn btn-secondary" href="../index.html">&larr; Back to Main Assessment</a>
+        <a class="btn btn-primary" href="sample_risk_register.xlsx" download>Download Sample Risk Register (XLSX)</a>
+        <button id="exportBtn" class="btn btn-outline">Export Current View as XLSX</button>
+    </div>
+
+    <div class="filters">
+        <label for="levelFilter">Residual Risk Level:</label>
+        <select id="levelFilter">
+            <option value="All">All</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <label for="statusFilter">Status:</label>
+        <select id="statusFilter">
+            <option value="All">All</option>
+            <option value="Open">Open</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Closed">Closed</option>
+        </select>
+    </div>
+
+    <table class="risk-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Risk Title</th>
+            <th>Category</th>
+            <th>Inherent Score</th>
+            <th>Residual Score</th>
+            <th>Residual Level</th>
+            <th>Owner</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Key Remediation</th>
+        </tr>
+        </thead>
+        <tbody id="riskTableBody">
+        <!-- filled by JS -->
+        </tbody>
+    </table>
+
+    <div class="chart-container">
+        <h3>Risk Distribution by Residual Level</h3>
+        <canvas id="riskChart" height="220"></canvas>
+        <p class="text-muted">
+            This chart helps executives quickly see if the acquisition is dominated by High, Medium, or Low residual risks.
+        </p>
+    </div>
+</div>
+
+<script>
+    // Sample data for the example acquisition
+    const allRisks = [
+        {
+            id: 'R-01',
+            title: 'Legacy unsupported servers in data center',
+            category: 'Systems / OS',
+            inherent: 18,
+            residual: 12,
+            level: 'High',
+            owner: 'Infrastructure Lead',
+            due: '2026-01-31',
+            status: 'In Progress',
+            remediation: 'Migrate critical workloads to supported OS; decommission remaining legacy VMs.'
+        },
+        {
+            id: 'R-02',
+            title: 'No MFA for privileged accounts',
+            category: 'Identity & Access',
+            inherent: 20,
+            residual: 10,
+            level: 'High',
+            owner: 'IAM Manager',
+            due: '2025-12-15',
+            status: 'Open',
+            remediation: 'Roll out MFA for all admins and remote access; update IAM policy for acquisitions.'
+        },
+        {
+            id: 'R-03',
+            title: 'Limited logging on SaaS CRM',
+            category: 'Logging / SaaS',
+            inherent: 12,
+            residual: 8,
+            level: 'Medium',
+            owner: 'App Owner – CRM',
+            due: '2026-02-10',
+            status: 'In Progress',
+            remediation: 'Enable advanced audit logs, integrate into parent SIEM, define retention policy.'
+        },
+        {
+            id: 'R-04',
+            title: 'Missing vendor security review for key payment provider',
+            category: 'Third-Party / Supply Chain',
+            inherent: 10,
+            residual: 6,
+            level: 'Medium',
+            owner: 'Vendor Management',
+            due: '2026-03-01',
+            status: 'Open',
+            remediation: 'Perform security due diligence, review SOC2 / PCI evidence, update contract clauses.'
+        },
+        {
+            id: 'R-05',
+            title: 'BCP/DR plan not tested in last 24 months',
+            category: 'Business Continuity',
+            inherent: 8,
+            residual: 4,
+            level: 'Low',
+            owner: 'CISO',
+            due: '2026-04-30',
+            status: 'Open',
+            remediation: 'Run joint DR exercise after integration; document lessons learned and update plans.'
+        }
+    ];
+
+    const tbody = document.getElementById('riskTableBody');
+    const levelFilter = document.getElementById('levelFilter');
+    const statusFilter = document.getElementById('statusFilter');
+    const exportBtn = document.getElementById('exportBtn');
+    const ctx = document.getElementById('riskChart').getContext('2d');
+
+    let chartInstance = null;
+
+    function renderTable() {
+        const levelVal = levelFilter.value;
+        const statusVal = statusFilter.value;
+
+        const filtered = allRisks.filter(r => {
+            const matchLevel = levelVal === 'All' || r.level === levelVal;
+            const matchStatus = statusVal === 'All' || r.status === statusVal;
+            return matchLevel && matchStatus;
+        });
+
+        tbody.innerHTML = '';
+        filtered.forEach(risk => {
+            const tr = document.createElement('tr');
+
+            tr.innerHTML = `
+                <td>${risk.id}</td>
+                <td>${risk.title}</td>
+                <td>${risk.category}</td>
+                <td>${risk.inherent}</td>
+                <td>${risk.residual}</td>
+                <td>${renderLevelBadge(risk.level)}</td>
+                <td>${risk.owner}</td>
+                <td>${risk.due}</td>
+                <td>${risk.status}</td>
+                <td>${risk.remediation}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        renderChart(filtered);
+    }
+
+    function renderLevelBadge(level) {
+        let cls = 'badge-low';
+        if (level === 'Medium') cls = 'badge-medium';
+        if (level === 'High') cls = 'badge-high';
+        return `<span class="badge ${cls}">${level}</span>`;
+    }
+
+    function renderChart(risks) {
+        const counts = { Low: 0, Medium: 0, High: 0 };
+        risks.forEach(r => counts[r.level]++);
+
+        const data = {
+            labels: ['Low', 'Medium', 'High'],
+            datasets: [{
+                label: 'Number of Risks',
+                data: [counts.Low, counts.Medium, counts.High]
+            }]
+        };
+
+        if (chartInstance) chartInstance.destroy();
+
+        chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, ticks: { precision: 0 } }
+                }
+            }
+        });
+    }
+
+    // Export current filtered view to XLSX using SheetJS
+    exportBtn.addEventListener('click', () => {
+        const levelVal = levelFilter.value;
+        const statusVal = statusFilter.value;
+
+        const filtered = allRisks.filter(r => {
+            const matchLevel = levelVal === 'All' || r.level === levelVal;
+            const matchStatus = statusVal === 'All' || r.status === statusVal;
+            return matchLevel && matchStatus;
+        });
+
+        const rows = filtered.map(r => ({
+            ID: r.id,
+            Title: r.title,
+            Category: r.category,
+            InherentScore: r.inherent,
+            ResidualScore: r.residual,
+            ResidualLevel: r.level,
+            Owner: r.owner,
+            DueDate: r.due,
+            Status: r.status,
+            Remediation: r.remediation
+        }));
+
+        const ws = XLSX.utils.json_to_sheet(rows);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'RiskRegister');
+        XLSX.writeFile(wb, 'Ta5tetk_Risk_Register_View.xlsx');
+    });
+
+    levelFilter.addEventListener('change', renderTable);
+    statusFilter.addEventListener('change', renderTable);
+
+    // initial render
+    renderTable();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Integration Scenarios – Ta5tetk</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        body { background:#fafafa; padding:30px; }
+        h1, h2 { color:#004aad; }
+        .scenario-box {
+            background:#ffffff;
+            padding:20px;
+            border-radius:12px;
+            margin-bottom:25px;
+            box-shadow:0 4px 14px rgba(0,0,0,0.08);
+        }
+        .scenario-header {
+            font-size:1.35rem;
+            font-weight:600;
+            color:#004aad;
+            margin-bottom:10px;
+        }
+        .scenario-table {
+            width:100%;
+            border-collapse:collapse;
+            margin-top:12px;
+        }
+        .scenario-table th, .scenario-table td {
+            border:1px solid #d9d9d9;
+            padding:10px;
+        }
+        .scenario-table th {
+            background:#eaf1ff;
+            font-weight:600;
+        }
+        .tag {
+            padding:3px 10px;
+            border-radius:6px;
+            font-size:0.85rem;
+            font-weight:600;
+        }
+        .low { background:#d4f5dd; color:#198754; }
+        .medium { background:#fff1cc; color:#cc8b00; }
+        .high { background:#ffd6d6; color:#d00000; }
+        .critical { background:#ffb3b3; color:#a30000; }
+    </style>
+</head>
+
+<body>
+
+<h1>Integration Scenarios</h1>
+<p class="lead">
+Realistic examples of how different acquired companies are integrated based on their cyber risk posture.
+</p>
+
+<!-- Scenario 1 -->
+<div class="scenario-box">
+    <div class="scenario-header">Scenario 1: Low-Risk SaaS Startup – Full Integration</div>
+
+    <table class="scenario-table">
+        <tr>
+            <th>Risk Level</th>
+            <td><span class="tag low">Low (22%)</span></td>
+        </tr>
+        <tr>
+            <th>Decision</th>
+            <td>Full Integration into parent company’s network & identity systems.</td>
+        </tr>
+        <tr>
+            <th>Why</th>
+            <td>
+                - Modern cloud architecture<br>
+                - Strong IAM with enforced MFA<br>
+                - Good logging & vulnerability management<br>
+                - No known breaches or critical gaps
+            </td>
+        </tr>
+        <tr>
+            <th>Timeline</th>
+            <td>2–4 weeks (standard onboarding & API integration)</td>
+        </tr>
+    </table>
+</div>
+
+<!-- Scenario 2 -->
+<div class="scenario-box">
+    <div class="scenario-header">Scenario 2: Medium-Risk Regional Provider – Segmented Integration</div>
+
+    <table class="scenario-table">
+        <tr>
+            <th>Risk Level</th>
+            <td><span class="tag medium">Medium (48%)</span></td>
+        </tr>
+        <tr>
+            <th>Decision</th>
+            <td>Segmented Integration – high-risk systems temporarily isolated.</td>
+        </tr>
+        <tr>
+            <th>Why</th>
+            <td>
+                - Mixed environment (cloud + on-prem)<br>
+                - MFA partially deployed<br>
+                - Limited SaaS logging<br>
+                - Some outdated OS in financial department
+            </td>
+        </tr>
+        <tr>
+            <th>Timeline</th>
+            <td>6–10 weeks (remediation → partial integration → full merge)</td>
+        </tr>
+    </table>
+</div>
+
+<!-- Scenario 3 -->
+<div class="scenario-box">
+    <div class="scenario-header">Scenario 3: High-Risk Manufacturing Company – Ring-Fenced Environment</div>
+
+    <table class="scenario-table">
+        <tr>
+            <th>Risk Level</th>
+            <td><span class="tag high">High (68%)</span></td>
+        </tr>
+        <tr>
+            <th>Decision</th>
+            <td>Ring-Fenced – no connectivity until critical issues are resolved.</td>
+        </tr>
+        <tr>
+            <th>Why</th>
+            <td>
+                - Multiple unsupported Windows servers<br>
+                - No SIEM or monitoring<br>
+                - Indicators of past unreported breaches<br>
+                - Shared privileged accounts
+            </td>
+        </tr>
+        <tr>
+            <th>Timeline</th>
+            <td>3–6 months (patching → IAM overhaul → logging → reassessment)</td>
+        </tr>
+    </table>
+</div>
+
+<!-- Scenario 4 -->
+<div class="scenario-box">
+    <div class="scenario-header">Scenario 4: Critical Breach – Clean-Room Rebuild</div>
+
+    <table class="scenario-table">
+        <tr>
+            <th>Risk Level</th>
+            <td><span class="tag critical">Critical (88%)</span></td>
+        </tr>
+        <tr>
+            <th>Decision</th>
+            <td>Clean-Room Rebuild before any connection to parent network.</td>
+        </tr>
+        <tr>
+            <th>Why</th>
+            <td>
+                - Active compromise detected<br>
+                - Attack persistence suspected<br>
+                - No viable logging to verify system integrity<br>
+                - Unsafe to integrate or reuse existing images
+            </td>
+        </tr>
+        <tr>
+            <th>Timeline</th>
+            <td>4–8 months (forensic investigation → rebuild → controlled onboarding)</td>
+        </tr>
+    </table>
+</div>
+
+<div class="text-center" style="margin-top:30px;">
+    <a class="btn btn-secondary" href="../index.html">Back</a>
+</div>
+
+</body>
+</html>

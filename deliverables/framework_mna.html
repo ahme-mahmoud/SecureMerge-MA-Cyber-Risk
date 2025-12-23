@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>M&A Integration Decision Framework – Ta5tetk</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        body { padding: 30px; background:#fafafa; line-height:1.6; }
+        h1, h2 { color:#004aad; }
+        .section-box {
+            background:#ffffff;
+            padding:20px;
+            border-radius:10px;
+            margin-bottom:25px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.08);
+        }
+        .scenario {
+            border-left:5px solid #004aad;
+            padding:15px 20px;
+            background:#fff;
+            margin-bottom:20px;
+            border-radius:8px;
+        }
+        .tag {
+            padding:6px 10px;
+            border-radius:8px;
+            font-size:13px;
+            color:#fff;
+            font-weight:600;
+        }
+        .low { background:#198754; }
+        .medium { background:#fd7e14; }
+        .high { background:#dc3545; }
+        .critical { background:#6f42c1; }
+    </style>
+</head>
+
+<body>
+
+<h1>M&A Integration Decision Framework</h1>
+<p class="lead">
+This framework provides guidance for deciding how to integrate a target company based on its cyber maturity and overall risk score.
+</p>
+
+<div class="section-box">
+    <h2>1. Integration Patterns</h2>
+    <ul>
+        <li><strong>Full Integration</strong> – Directly merge systems & identities, normal controls.</li>
+        <li><strong>Segmented Integration</strong> – Low-risk assets merge, high-risk isolated temporarily.</li>
+        <li><strong>Ring-Fenced</strong> – All systems remain isolated behind a strong boundary.</li>
+        <li><strong>Clean-Room Rebuild</strong> – Critical rebuild before connecting anything.</li>
+    </ul>
+</div>
+
+<div class="section-box">
+    <h2>2. Decision Criteria</h2>
+    <ul>
+        <li>Overall risk score (from the assessment).</li>
+        <li>Existence of breaches in the last 12 months.</li>
+        <li>Maturity of identity & logging controls.</li>
+        <li>Exposure to third-party / SaaS risks.</li>
+        <li>Cloud configuration and backups posture.</li>
+        <li>Criticality of inherited systems.</li>
+    </ul>
+</div>
+
+<div class="section-box">
+    <h2>3. Integration Scenarios</h2>
+
+    <!-- Scenario 1 -->
+    <div class="scenario">
+        <h3>1) Low-Risk SaaS Startup 
+            <span class="tag low">Low Risk</span>
+        </h3>
+        <p><strong>Recommended Decision:</strong> Full Integration</p>
+        <p>
+            A young SaaS startup with modern infrastructure, MFA everywhere, cloud-native security controls,
+            and no known breaches. Minimal legacy systems.
+        </p>
+        <ul>
+            <li><strong>Why:</strong> High cyber hygiene, compliant SaaS stack, strong IAM.</li>
+            <li><strong>Timeline:</strong> 2–3 weeks for full directory & network merging.</li>
+        </ul>
+    </div>
+
+    <!-- Scenario 2 -->
+    <div class="scenario">
+        <h3>2) Medium-Risk Regional Service Provider 
+            <span class="tag medium">Medium Risk</span>
+        </h3>
+        <p><strong>Recommended Decision:</strong> Segmented Integration</p>
+        <p>
+            Uses a mix of modern systems and some outdated on-prem servers. Logging partial.
+            No major breaches but visibility is limited.
+        </p>
+        <ul>
+            <li><strong>Why:</strong> Some controls missing, minor vulnerabilities.</li>
+            <li><strong>Timeline:</strong> 4–6 weeks until remediation of outdated systems.</li>
+        </ul>
+    </div>
+
+    <!-- Scenario 3 -->
+    <div class="scenario">
+        <h3>3) High-Risk Manufacturing Company 
+            <span class="tag high">High Risk</span>
+        </h3>
+        <p><strong>Recommended Decision:</strong> Ring-Fenced Environment</p>
+        <p>
+            Contains legacy Windows servers, no MFA, missing logs, weak segmentation,
+            and previous malware incidents.
+        </p>
+        <ul>
+            <li><strong>Why:</strong> High threat exposure + high impact systems.</li>
+            <li><strong>Timeline:</strong> 2–3 months of remediation before connecting.</li>
+        </ul>
+    </div>
+
+    <!-- Scenario 4 -->
+    <div class="scenario">
+        <h3>4) Critical Breach Detected Pre-Acquisition 
+            <span class="tag critical">Critical</span>
+        </h3>
+        <p><strong>Recommended Decision:</strong> Clean-Room Rebuild</p>
+        <p>
+            Incident response shows active compromise; identity systems and servers may be backdoored.
+        </p>
+        <ul>
+            <li><strong>Why:</strong> Cannot trust any inherited system.</li>
+            <li><strong>Timeline:</strong> 3–6 months of full rebuild before any integration.</li>
+        </ul>
+    </div>
+
+</div>
+
+
+<div class="section-box">
+    <h2>4. PDF Export</h2>
+    <button class="btn btn-primary" id="downloadBtn">Download PDF</button>
+    <a class="btn btn-secondary" href="../index.html">Back</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+document.getElementById('downloadBtn').addEventListener('click', function () {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const text = document.body.innerText;
+    const lines = doc.splitTextToSize(text, 180);
+
+    doc.setFontSize(14);
+    doc.text('M&A Integration Decision Framework – Ta5tetk', 105, 10, { align:'center' });
+    doc.setFontSize(11);
+    doc.text(lines, 10, 20);
+
+    doc.save('integration_framework.pdf');
+});
+</script>
+
+</body>
+</html>

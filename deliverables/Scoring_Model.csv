@@ -1,0 +1,6 @@
+Question,Category,Weight,AnswerOptions
+q1,Systems,2,Yes=2;No=0
+q2,Systems,1,Yes=0;No=1
+q3,Identity,1,Yes=0;No=1
+q4,Identity,2,Yes=0;Partial=1;No=2
+q7,Threat,3,Within6=0;6-12=1;Over12=2;Never=3

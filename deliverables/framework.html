@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>M&A Integration Framework – Ta5tetk</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        body { padding: 30px; background:#f7f9fc; line-height:1.6; }
+        h1,h2 { color:#004aad; }
+        .box {
+            background:#fff;
+            padding:20px;
+            margin-bottom:25px;
+            border-radius:10px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.08);
+        }
+        table {
+            width:100%; border-collapse:collapse; margin-top:15px;
+        }
+        th,td {
+            border:1px solid #ccc; padding:10px;
+        }
+        th {
+            background:#e7efff;
+        }
+        .tag {
+            padding:6px 10px;
+            border-radius:6px;
+            font-weight:bold;
+        }
+        .low { background:#d4edda; color:#155724; }
+        .medium { background:#ffeeba; color:#856404; }
+        .high { background:#f8d7da; color:#721c24; }
+        .critical { background:#ffb3b3; color:#7b0000; }
+    </style>
+</head>
+
+<body>
+
+<h1>M&A Integration Decision Framework</h1>
+<p class="lead">
+A structured framework used to determine whether a target company should be fully integrated, partially segmented, ring-fenced or rebuilt in a clean-room environment during M&A.
+</p>
+
+<div class="box">
+    <h2>1. Core Integration Patterns</h2>
+    <ul>
+        <li><strong>Full Integration</strong> – Target meets minimum cyber hygiene; low risk.</li>
+        <li><strong>Segmented Integration</strong> – Some risks exist; isolate high-risk assets.</li>
+        <li><strong>Ring-Fenced</strong> – High-risk environment must remain isolated.</li>
+        <li><strong>Clean-Room Rebuild</strong> – Critical compromise; rebuild from zero.</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h2>2. Decision Criteria</h2>
+    <table>
+        <tr>
+            <th>Factor</th>
+            <th>Low-Risk</th>
+            <th>Medium</th>
+            <th>High / Critical</th>
+        </tr>
+        <tr>
+            <td>Operating Systems</td>
+            <td>Fully supported</td>
+            <td>Some outdated systems</td>
+            <td>Multiple legacy critical servers</td>
+        </tr>
+        <tr>
+            <td>Breach History</td>
+            <td>No breaches</td>
+            <td>Minor isolated incident</td>
+            <td>Major breach / active compromise</td>
+        </tr>
+        <tr>
+            <td>Identity & Access</td>
+            <td>MFA everywhere</td>
+            <td>MFA partial</td>
+            <td>No MFA / shared admin accounts</td>
+        </tr>
+        <tr>
+            <td>Cloud/SaaS</td>
+            <td>Secure, compliant</td>
+            <td>Some misconfigurations</td>
+            <td>Unsecured cloud, public exposure</td>
+        </tr>
+    </table>
+</div>
+
+<div class="box">
+    <h2>3. Integration Decision Matrix</h2>
+    <table>
+        <tr>
+            <th>Risk Level</th>
+            <th>Recommended Action</th>
+            <th>Why</th>
+            <th>Typical Timeline</th>
+        </tr>
+
+        <tr>
+            <td><span class="tag low">Low Risk</span></td>
+            <td>Full Integration</td>
+            <td>Meets hygiene, no major findings</td>
+            <td>2–4 weeks</td>
+        </tr>
+
+        <tr>
+            <td><span class="tag medium">Medium Risk</span></td>
+            <td>Segmented Integration</td>
+            <td>Issues exist but can be contained</td>
+            <td>4–8 weeks</td>
+        </tr>
+
+        <tr>
+            <td><span class="tag high">High Risk</span></td>
+            <td>Ring-Fence</td>
+            <td>Critical vulnerabilities or major gaps</td>
+            <td>8–12 weeks</td>
+        </tr>
+
+        <tr>
+            <td><span class="tag critical">Critical</span></td>
+            <td>Clean-Room Rebuild</td>
+            <td>Active breach, ransomware, deep compromise</td>
+            <td>12–20 weeks</td>
+        </tr>
+    </table>
+</div>
+
+<div class="box">
+    <h2>4. PDF Export</h2>
+    <button class="btn btn-primary" id="downloadBtn">Download PDF</button>
+    <a class="btn btn-secondary" href="../index.html">Back</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+document.getElementById('downloadBtn').addEventListener('click', () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const text = document.body.innerText;
+    const lines = doc.splitTextToSize(text, 180);
+
+    doc.text("M&A Integration Framework – Ta5tetk", 105, 10, {align:"center"});
+    doc.setFontSize(11);
+    doc.text(lines, 10, 20);
+
+    doc.save("integration_framework.pdf");
+});
+</script>
+
+</body>
+</html>
