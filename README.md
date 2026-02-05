@@ -1,4 +1,4 @@
-<img width="500" height="500" alt="SecureMerge Logo" src="https://github.com/user-attachments/assets/47ea9a95-58a1-4057-8d09-d78a3085150b" />
+<img width="500" height="500" alt="SecureMerge Logo" src="https://raw.githubusercontent.com/ahme-mahmoud/SecureMerge-MA-Cyber-Risk/main/ta5tetk_site/SecureMerge.png" />
 
 # SecureMerge – Cyber Risk Management for Mergers & Acquisitions (M&A)
 
